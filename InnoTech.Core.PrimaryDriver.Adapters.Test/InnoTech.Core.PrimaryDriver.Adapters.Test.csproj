@@ -7,10 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="6.0.0-alpha0001" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Moq" Version="4.15.1" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\InnoTech.Core.Entity\InnoTech.Core.Entity.csproj" />
+    <ProjectReference Include="..\InnoTech.Core.Infratructure.Ports\InnoTech.Core.Infratructure.Ports.csproj" />
+    <ProjectReference Include="..\InnoTech.Core.PrimaryDriver.Adapters\InnoTech.Core.PrimaryDriver.Adapters.csproj" />
+    <ProjectReference Include="..\Inno\InnoTech.Core.PrimaryDriver.Ports.csproj" />
   </ItemGroup>
 
 </Project>

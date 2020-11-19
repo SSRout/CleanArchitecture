@@ -2,7 +2,7 @@
 
 namespace InnoTech.Core.Entity
 {
-    public class Class1
+    public class Location
     {
     }
 }
