@@ -9,6 +9,7 @@ using Moq;
 using InnoTech.Core.Entity;
 using FluentAssertions;
 using InnoTech.Core.PrimaryDriver.Adapters.Exceptions;
+using InnoTech.Core.PrimaryDriver.Adapters.Validators;
 
 namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Services
 {
@@ -18,58 +19,31 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Services
         public void CreateNewLocationServiceOfTypeILocationService_WithNullAsILocationRepository_ThrowsNullReferenceException()
         {
             ILocationRepository locationRepository = null;
-            Assert.Throws<NullReferenceException>(() => new LocationService(locationRepository));
+            Action action = () => new LocationService(locationRepository,null);
+            action.Should().Throw<ParameterCannotBeNullException>().WithMessage("LocationRepository Parameter Can't be null");
         }
 
         [Fact]
-        public void Create_WithLocationAsNull_ThrowsNullReferenceExceptionWithCorrectMessage()
+        public void CreateNewLocationServiceOfTypeILocationService_WithNullAsILocationValidator_ThrowsNullReferenceException()
         {
-            var locationRepository = new Mock<ILocationRepository>().Object;
-            ILocationService locationService = new LocationService(locationRepository);
-            try
+            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
+            ILocationValidator validator = null as LocationValidator;
+            Action action = () => new LocationService(locationRepository, validator );
+            action.Should().Throw<ParameterCannotBeNullException>().WithMessage("LocationValidator Parameter Can't be null");
+        }
+
+        [Fact]
+        public void Create_WithLocationParameter_ShouldCallILocationValidatorsDefaultValidationMethodOnTime()
+        {
+            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
+            Mock<ILocationValidator> locationValidatorMock = new Mock<ILocationValidator>();
+            LocationService locationService = new LocationService(locationRepository, locationValidatorMock.Object);
+            Location location = new Location
             {
-                Action action=()=>locationService.Create(null);
-                action.Should().Throw<ParameterCannotBeNullException>().WithMessage("Location Parameter Can't be null");
-                //locationService.Create(null);
-                //Assert.True(false, "We should never gete here.shpul;d throw exception");
-            }
-            catch (NullReferenceException e)
-            {
-                Assert.Equal("Location can't be null", e.Message);
-            }
+                Name = "Hyd"
+            };
+            locationService.Create(location);
+            locationValidatorMock.Verify(lm => lm.DefaultValidation(location),Times.Once);
         }
-
-        [Fact]
-        public void Create_WithLocationAsNull_ThrowsParameterCannotBeNullExceptionWithLocationMessage()
-        {
-            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
-            ILocationService locationService = new LocationService(locationRepository);
-            Assert.Throws<ParameterCannotBeNullException>(()=>locationService.Create(null as Location));
-        }
-
-        [Fact]
-        public void CreateLocation_WithEmptyName_ThrowsPropertyCannotBeEmptyException()
-        {
-            var location = new Location();
-            location.Name = "";
-            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
-            ILocationService locationService = new LocationService(locationRepository);
-            //fluent assertion used
-            Action action = () => locationService.Create(location);
-            action.Should().Throw<PropertyCannotBeEmptyException>()
-                .And.ParamName.Should().Be("Name needs to be a value");
-        }
-
-        [Fact]
-        public void CreateLocation_withNameLessThan2Characters_ThrowsArgumentOutOfRangeException()
-        {
-            var location = new Location();
-            location.Name = "A";
-            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
-            ILocationService locationService = new LocationService(locationRepository);
-            Action action = () => locationService.Create(location);
-            action.Should().Throw<ArgumentOutOfRangeException>().And.ParamName.Should().Be("Name must be 2 or more characters");
-        }
-
     }
 }
