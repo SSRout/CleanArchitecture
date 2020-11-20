@@ -1,8 +1,6 @@
-﻿using InnoTech.Core.PrimaryDriver.Ports.Services;
-using InnoTech.Core.PrimaryDriver.Adapters.Services;
+﻿using InnoTech.Core.PrimaryDriver.Adapters.Services;
+using InnoTech.Core.PrimaryDriver.Ports.Services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 using InnoTech.Core.Infratructure.Ports.Repositories;
 using Moq;

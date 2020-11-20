@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InnoTech.Core.Infratructure.Ports\InnoTech.Core.Infratructure.Ports.csproj" />
-    <ProjectReference Include="..\Inno\InnoTech.Core.PrimaryDriver.Ports.csproj" />
+    <ProjectReference Include="..\InnoTech.Core.PrimaryDriver.Ports\InnoTech.Core.PrimaryDriver.Ports.csproj" />
   </ItemGroup>
 
 </Project>

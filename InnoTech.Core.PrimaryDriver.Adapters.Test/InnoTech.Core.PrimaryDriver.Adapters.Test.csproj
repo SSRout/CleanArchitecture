@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -19,7 +19,6 @@
     <ProjectReference Include="..\InnoTech.Core.Entity\InnoTech.Core.Entity.csproj" />
     <ProjectReference Include="..\InnoTech.Core.Infratructure.Ports\InnoTech.Core.Infratructure.Ports.csproj" />
     <ProjectReference Include="..\InnoTech.Core.PrimaryDriver.Adapters\InnoTech.Core.PrimaryDriver.Adapters.csproj" />
-    <ProjectReference Include="..\Inno\InnoTech.Core.PrimaryDriver.Ports.csproj" />
   </ItemGroup>
 
 </Project>

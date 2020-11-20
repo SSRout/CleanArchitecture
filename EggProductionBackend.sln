@@ -15,11 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoTech.Core.Entity", "Inn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoTech.Core.PrimaryDriver.Adapters.Test", "InnoTech.Core.PrimaryDriver.Adapters.Test\InnoTech.Core.PrimaryDriver.Adapters.Test.csproj", "{E0B1E5B5-AF7B-4344-9209-4E0C18D6C8E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoTech.Core.PrimaryDriver.Ports", "Inno\InnoTech.Core.PrimaryDriver.Ports.csproj", "{E9C6378F-AA64-4354-B580-3DFED80B5422}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoTech.Core.PrimaryDriver.Ports", "InnoTech.Core.PrimaryDriver.Ports\InnoTech.Core.PrimaryDriver.Ports.csproj", "{E9C6378F-AA64-4354-B580-3DFED80B5422}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoTech.Core.PrimaryDriver.Adapters", "InnoTech.Core.PrimaryDriver.Adapters\InnoTech.Core.PrimaryDriver.Adapters.csproj", "{4952FC11-B9BD-4908-96D3-AAE78B0766FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoTech.Core.PrimaryDriver.Adapters", "InnoTech.Core.PrimaryDriver.Adapters\InnoTech.Core.PrimaryDriver.Adapters.csproj", "{4952FC11-B9BD-4908-96D3-AAE78B0766FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnoTech.Core.Infratructure.Ports", "InnoTech.Core.Infratructure.Ports\InnoTech.Core.Infratructure.Ports.csproj", "{C98D8A8E-32DA-40A5-AB5F-2B7C7CE83506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InnoTech.Core.Infratructure.Ports", "InnoTech.Core.Infratructure.Ports\InnoTech.Core.Infratructure.Ports.csproj", "{C98D8A8E-32DA-40A5-AB5F-2B7C7CE83506}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
