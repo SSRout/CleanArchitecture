@@ -33,9 +33,9 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Services
         [Fact]
         public void Create_WithLocationParameter_ShouldCallILocationValidatorsDefaultValidationMethodOnTime()
         {
-            ILocationRepository locationRepository = new Mock<ILocationRepository>().Object;
+            Mock<ILocationRepository> locationRepositoryMock = new Mock<ILocationRepository>();
             Mock<ILocationValidator> locationValidatorMock = new Mock<ILocationValidator>();
-            LocationService locationService = new LocationService(locationRepository, locationValidatorMock.Object);
+            LocationService locationService = new LocationService(locationRepositoryMock.Object, locationValidatorMock.Object);
             Location location = new Location
             {
                 Name = "Hyd"
