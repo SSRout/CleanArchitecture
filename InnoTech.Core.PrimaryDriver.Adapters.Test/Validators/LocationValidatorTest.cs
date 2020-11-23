@@ -15,6 +15,13 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
             _locationValidatorTestHelper =new  LocationValidatorTestHelper();
             _locationTestHelper =new  LocationTestHelper();
         }
+
+        [Fact]
+        public void DefaultValidation_LocationWithNegativeId_TheowsArgumentOutOfRangeException()
+        {
+            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.LocationWithID(-1), "ID needs to 0 or more");
+        }
+
         [Fact]
         public void DefaultValidation_WithNullLocation_ThrowsNewParameterCannotBeNullException()
         {
@@ -42,10 +49,13 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
         [Fact]
         public void DefaultValidation_WithEmptyLocationAddress_ThrowsPropertyCannotBeEmptyException()
         {
-            var location = _locationTestHelper.Location();
-            location.Name = "Village";
-            location.Address = "";
-            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(location,"Address needs to be a value");
+            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(_locationTestHelper.Location("Village"),"Address needs to be a value");
+        }
+
+        [Fact]
+        public void DefaultValidation_WithEmptyLocationOwner_ThrowsPropertyCannotBeEmptyException()
+        {
+            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(_locationTestHelper.Location("Owner"), "Address needs to be a value");
         }
 
     }

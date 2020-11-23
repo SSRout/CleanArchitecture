@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
 using InnoTech.Core.PrimaryDriver.Adapters.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Exceptions

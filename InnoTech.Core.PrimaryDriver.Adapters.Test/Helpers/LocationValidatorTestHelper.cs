@@ -1,15 +1,31 @@
-﻿using InnoTech.Core.Entity;
+﻿using FluentAssertions;
+using InnoTech.Core.Entity;
 using InnoTech.Core.PrimaryDriver.Adapters.Validators;
+using InnoTech.Core.PrimaryDriver.Ports.Services;
 using System;
 
 namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers
 {
     public class LocationValidatorTestHelper
     {
-        public Action DefaultValidation<T>(Location location = null, string message = null) where T : Exception
+        public void DefaultValidation<TE>(Location location = null, string message = null) where TE : Exception
         {
-            var  validator = new LocationValidator();
-            return () => validator.DefaultValidation(location);
+            Action action = () => LocationValidator().DefaultValidation(location);
+            if (message != null)
+            {
+                action.Should().Throw<TE>()
+                    .And.Message.Should().Be(message);
+            }
+            else
+            {
+                action.Should().Throw<TE>();
+            }
+
+        }
+
+        private ILocationValidator LocationValidator()
+        {
+            return new LocationValidator();
         }
     }
 }

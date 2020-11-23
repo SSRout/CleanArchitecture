@@ -14,11 +14,13 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Validators
             if (location == null) throw new ParameterCannotBeNullException("Location");
 
             if (string.IsNullOrEmpty(location.Name)) throw new PropertyCannotBeEmptyException("Name");
-
-            if (location.Name.Length < 2) throw new ArgumentOutOfRangeException("Name must be 2 or more characters");
-            if (location.Name.Length > 12) throw new ArgumentOutOfRangeException("Name must be less than 12 characters");
-
             if (string.IsNullOrEmpty(location.Address)) throw new PropertyCannotBeEmptyException("Address");
+            if (string.IsNullOrEmpty(location.Owner)) throw new PropertyCannotBeEmptyException("Owner");
+
+            if (location.Name.Length < 2) throw new ArgumentOutOfRangeException(null,"Name must be 2 or more characters");
+            if (location.Name.Length > 12) throw new ArgumentOutOfRangeException(null,"Name must be less than 12 characters");
+
+            if (location.Id <0) throw new ArgumentOutOfRangeException(null,"ID needs to 0 or more");
         }
     }
 }
