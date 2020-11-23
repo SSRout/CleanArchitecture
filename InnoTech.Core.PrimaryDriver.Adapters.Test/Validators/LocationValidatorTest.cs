@@ -1,15 +1,6 @@
-﻿using FluentAssertions;
-using InnoTech.Core.Entity;
-using InnoTech.Core.Infratructure.Ports.Repositories;
-using InnoTech.Core.PrimaryDriver.Adapters.Exceptions;
-using InnoTech.Core.PrimaryDriver.Adapters.Services;
+﻿using InnoTech.Core.PrimaryDriver.Adapters.Exceptions;
 using InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers;
-using InnoTech.Core.PrimaryDriver.Adapters.Validators;
-using InnoTech.Core.PrimaryDriver.Ports.Services;
-using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
@@ -40,6 +31,21 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
         public void DefaultValidation_withNameLessThan2Characters_ThrowsArgumentOutOfRangeException()
         {
             _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.Location("A"),"Name must be 2 or more characters");
+        }
+
+        [Fact]
+        public void DefaultValidation_withNameMoreThan12Characters_ThrowsArgumentOutOfRangeException()
+        {
+            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.Location("Abcdefghijklm"), "Name must be less than 12 characters");
+        }
+
+        [Fact]
+        public void DefaultValidation_WithEmptyLocationAddress_ThrowsPropertyCannotBeEmptyException()
+        {
+            var location = _locationTestHelper.Location();
+            location.Name = "Village";
+            location.Address = "";
+            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(location,"Address needs to be a value");
         }
 
     }

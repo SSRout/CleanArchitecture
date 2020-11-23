@@ -16,6 +16,9 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Validators
             if (string.IsNullOrEmpty(location.Name)) throw new PropertyCannotBeEmptyException("Name");
 
             if (location.Name.Length < 2) throw new ArgumentOutOfRangeException("Name must be 2 or more characters");
+            if (location.Name.Length > 12) throw new ArgumentOutOfRangeException("Name must be less than 12 characters");
+
+            if (string.IsNullOrEmpty(location.Address)) throw new PropertyCannotBeEmptyException("Address");
         }
     }
 }
