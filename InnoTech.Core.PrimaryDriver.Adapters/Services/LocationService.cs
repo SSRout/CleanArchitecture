@@ -11,18 +11,19 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Services
 {
     public class LocationService: ILocationService
     {
+        private readonly ILocationRepository _locationRepository;
         private readonly ILocationValidator _locationValidator;
 
         public LocationService(ILocationRepository locationRepository,ILocationValidator locationValidator)
         {
-            if (locationRepository == null) throw new ParameterCannotBeNullException("LocationRepository");
-            if (locationValidator == null) throw new ParameterCannotBeNullException("LocationValidator");
-            _locationValidator = locationValidator;
+            _locationRepository = locationRepository?? throw new ParameterCannotBeNullException("LocationRepository");
+            _locationValidator = locationValidator?? throw new ParameterCannotBeNullException("LocationValidator");
         }
 
         public void Create(Location location)
         {
             _locationValidator.DefaultValidation(location);
+            _locationRepository.Add(location);
         }
     }
 }

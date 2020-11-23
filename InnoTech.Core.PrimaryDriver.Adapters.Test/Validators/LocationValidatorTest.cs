@@ -15,6 +15,16 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
             _locationValidatorTestHelper =new  LocationValidatorTestHelper();
             _locationTestHelper =new  LocationTestHelper();
         }
+
+        [Theory]
+        [InlineData(-1)]
+        [InlineData(-5000)]
+        [InlineData(int.MinValue)]
+        public void DefaultValidation_LocationWithNegativeId_TheowsArgumentOutOfRangeException(int id)
+        {
+            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.LocationWithoutId(id), "ID needs to 0 or more");
+        }
+
         [Fact]
         public void DefaultValidation_WithNullLocation_ThrowsNewParameterCannotBeNullException()
         {
@@ -30,22 +40,25 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Validators
         [Fact]
         public void DefaultValidation_withNameLessThan2Characters_ThrowsArgumentOutOfRangeException()
         {
-            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.Location("A"),"Name must be 2 or more characters");
+            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.LocationWithoutName("A"),"Name must be 2 or more characters");
         }
 
         [Fact]
         public void DefaultValidation_withNameMoreThan12Characters_ThrowsArgumentOutOfRangeException()
         {
-            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.Location("Abcdefghijklm"), "Name must be less than 12 characters");
+            _locationValidatorTestHelper.DefaultValidation<ArgumentOutOfRangeException>(_locationTestHelper.LocationWithoutName("assvsdvdvdvdvzsdvd"), "Name must be less than 12 characters");
         }
 
         [Fact]
         public void DefaultValidation_WithEmptyLocationAddress_ThrowsPropertyCannotBeEmptyException()
         {
-            var location = _locationTestHelper.Location();
-            location.Name = "Village";
-            location.Address = "";
-            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(location,"Address needs to be a value");
+            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(_locationTestHelper.Location("Village"),"Address needs to be a value");
+        }
+
+        [Fact]
+        public void DefaultValidation_WithEmptyLocationOwner_ThrowsPropertyCannotBeEmptyException()
+        {
+            _locationValidatorTestHelper.DefaultValidation<PropertyCannotBeEmptyException>(_locationTestHelper.Location("Owner"), "Address needs to be a value");
         }
 
     }
