@@ -3,12 +3,11 @@ using InnoTech.Core.Entity;
 using InnoTech.Core.Infratructure.Ports.Repositories;
 using InnoTech.Core.PrimaryDriver.Adapters.Services;
 using InnoTech.Core.PrimaryDriver.Ports.Services;
+using InnoTech.Test.Helpers.Entities;
 using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers
+namespace InnoTech.Test.Helpers.Services
 {
     public class LocationServiceTestHelper
     {

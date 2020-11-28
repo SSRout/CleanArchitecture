@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers
+namespace InnoTech.Test.Helpers.Entities
 {
     public class LocationTestHelper
     {
@@ -52,27 +52,6 @@ namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers
                 Address = "The Place",
                 Owner = "John Doe"
             };
-        }
-
-        public Location LocationWithoutAddress(string Address = "")
-        {
-            var location = GetValidLocation();
-            location.Address = Address;
-            return location;
-        }
-
-        public Location LocationWithoutOwner(string owner="")
-        {
-            var location = LocationWithoutAddress("add");
-            location.Owner = owner;
-            return location;
-        }
-
-        public Location LocationWithID(int id = 0)
-        {
-            var location = LocationWithoutOwner("owner");
-            location.Id = id;
-            return location;
         }
     }
 }

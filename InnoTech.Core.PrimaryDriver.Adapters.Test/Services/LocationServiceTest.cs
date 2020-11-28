@@ -8,7 +8,7 @@ using InnoTech.Core.Entity;
 using FluentAssertions;
 using InnoTech.Core.PrimaryDriver.Adapters.Exceptions;
 using InnoTech.Core.PrimaryDriver.Adapters.Validators;
-using InnoTech.Core.PrimaryDriver.Adapters.Test.Helpers;
+using InnoTech.Test.Helpers.Services;
 
 namespace InnoTech.Core.PrimaryDriver.Adapters.Test.Services
 {
